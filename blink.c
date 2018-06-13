@@ -13,14 +13,15 @@ void sleep(int millisec)
 	}
 }
 
-void main()
+int main()
 {
 	DDRB |=1<<PB5;
 	while(1)
 	{
 		PORTB &= ~(1<<PB5);
-		sleep(1000);
+		sleep(100);
 		PORTB |= (1<<PB5);
-		sleep(1000);
+		sleep(100);
 		}
+	return 0;
 }
