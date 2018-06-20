@@ -15,12 +15,12 @@ void sleep(int millisec)
 
 int main()
 {
-	DDRB |=1<<PB5;
+	DDRB |=1<<5;
 	while(1)
 	{
-		PORTB &= ~(1<<PB5);
+		PORTB &= ~(1<<5);
 		sleep(100);
-		PORTB |= (1<<PB5);
+		PORTB |= (1<<5);
 		sleep(100);
 		}
 	return 0;
