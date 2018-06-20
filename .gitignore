@@ -1,0 +1,9 @@
+#ignore all elf files
+*.elf
+
+#ignore all c output files
+*.o
+
+#ignore all hex files
+*.hex
+
