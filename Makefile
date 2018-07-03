@@ -2,25 +2,26 @@
 # written by cgtyylmz
 
 # Project name.
-src=blink_timer
-#src=blink
+#src=blink_timer
+src=blink
 avrType=atmega328p # cpu
 avrFreq=16000000 # 16MHz crystal freq.
 programmerType=pi_1
 
+devPort=/dev/USB0
+avrConf=/home/pi/Project/avr/blink_whitout_delay/avrdude.conf
 cflags=-g -DF_CPU=$(avrFreq) -Wall -Os -Werror -Wextra
 
 help:
-	@echo 'clean        Delete automatically created files.'
-	@echo 'edit     	Edit the .c source file.'
-	@echo 'eeprom       Extract EEPROM data from .elf file and program the device with it.'
-	@echo 'elf      	Create $(src).elf'
-	@echo 'flash        Program $(src).hex to controller flash memory.'
-	@echo 'fuses        Extract FUSES data from .elf file and program the device with it.'
-	@echo 'help     	Show this text.'
-	@echo 'hex      	Create all hex files for flash, eeprom and fuses.'
-	@echo 'object       Create $(src).o'
-	@echo 'program      Do all programming to controller.'
+	@echo 'clean    Delete automatically created files.'
+	@echo 'edit     Edit the .c source file.'
+	@echo 'eeprom   Extract EEPROM data from .elf file and program the device with it.'
+	@echo 'elf	Create $(src).elf'
+	@echo 'flash_pi	Program $(src).hex to controller flash memory via Raspberry Pi gpio.'
+	@echo 'flash_arduino Program $(src).hex to  Arduino'
+	@echo 'help	Show this text.'
+	@echo 'hex	Create all hex files for flash, eeprom and fuses.'
+	@echo 'object	Create $(src).o'
 
 edit:
 	vim $(src).c
@@ -42,6 +43,9 @@ elf: object
 hex: elf
 	avr-objcopy -j .text -j .data -O ihex $(src).elf $(src).hex
 
-flash: hex
-	sudo avrdude -p atmega328p -C /home/pi/Project/avr/blink_whitout_delay/avrdude.conf -c pi_1 -v -U flash:w:$(src).hex:i
-	
+flash_pi: hex
+	sudo avrdude -p $(avrType) -C $(avrConf) -c pi_1 -v -U flash:w:$(src).hex:i
+
+flash_arduino: hex
+	sudo avrdude -v -p $(avrType) -c arduino -P $(devPort) -U flash:w:$(src).hex:i
+
