@@ -11,7 +11,7 @@
 #include<avr/io.h>
 #include<avr/interrupt.h>
 
-volatile uint8_t overflow_count;
+volatile uint16_t overflow_count;
 
 void timer0_init()
 {
@@ -42,9 +42,11 @@ int main()
 	timer0_init();
 	while(1)
 	{
-		if(overflow_count == 100)
+		if(overflow_count == 1000)
 		{
+			//toggle led pin
 			PORTB ^= (1<<PB5);
+			//reset count value
 			overflow_count = 0;
 		}	
 	}

@@ -2,8 +2,8 @@
 # written by cgtyylmz
 
 # Project name.
-#src=blink_timer
-src=blink
+src=blink_timer
+#src=blink
 avrType=atmega328p # cpu
 avrFreq=16000000 # 16MHz crystal freq.
 programmerType=pi_1
