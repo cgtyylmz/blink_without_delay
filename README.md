@@ -59,4 +59,16 @@ cflags=-g -DF_CPU=$(avrFreq) -Wall -Os -Werror -Wextra
 
 # AVR Timer Examination
 
+![alt text](./doc/timer.gif "8 bit timer")
+
+Atmega328 has three different timers of which the simplest timer is TIMER0. TIMER0 resolution is 8 bit(0-255). Timer0 count increasing with every clock pulse. Clock pulse generating by crystal oscilator. Arduino Nano has 16MHz oscilator. It's means every pulse, takes 1/16000000 = 0.625 us
+
+The Prescaler is used to divide clock frequncy and produce a clock for timer.
+
+## TIMER0 Register.
+
+Bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
+--- | --- |--- | --- | --- | --- | --- | --- | --- 
+Name | FOC0 | WGM00 | COM01 | COM00 | WGM01 | CS02 | CS01 | CS00
+Inital Value |0|0|0|0|0|0|0|0
 
