@@ -3,6 +3,9 @@
 Blinky led application using timer.(whitout delay function)
 
 I'm using Raspberry Pi Zero W GPIOs as ICSP programmer. Target device is ATmega328p-au based Arduino Nano(CH340 chip not working).
+
+![alt text](./doc/atmega328p.jpg "Atmega328p Pinout")
+
 ## Wiring
 Rpi  |  Arduino ICSP
 --- | ---
@@ -53,4 +56,7 @@ devPort=/dev/USB0
 avrConf=/home/pi/Project/avr/blink_whitout_delay/avrdude.conf
 cflags=-g -DF_CPU=$(avrFreq) -Wall -Os -Werror -Wextra
 ```
+
+# AVR Timer Examination
+
 
